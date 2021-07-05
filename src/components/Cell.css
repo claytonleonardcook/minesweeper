@@ -1,0 +1,12 @@
+.Cell {
+  height: 4vh;
+  width: 4vh;
+  font-size: 150%;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.Cell:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
