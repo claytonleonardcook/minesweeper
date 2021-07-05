@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import checkNeighbors from '../helper/checkNeighbors';
+import createGrid from '../helper/createGrid';
 import './Cell.css';
 
-function Cell({ position: { x, y }, minesweeper: { grid } }) {
+function Cell({ x, y, grid, setGrid }) {
     const [toggle, setToggle] = useState(true);
     return (
-        <th className="Cell" onClick={({ target }) => {
+        <th className="Cell" x={x} y={y} onClick={({ target }) => {
             if (toggle) {
-                console.log(x,y);
-                target.innerHTML = grid[y][x];
+                if (grid[y][x] === '💣') window.location.reload();
+                target.innerHTML = checkNeighbors(grid, x, y);
                 setToggle(false);
             }
         }}></th >
