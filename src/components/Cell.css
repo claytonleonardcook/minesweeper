@@ -1,7 +1,7 @@
 .Cell {
-  height: 4vh;
-  width: 4vh;
-  font-size: 150%;
+  height: clamp(15px, 15vw, 150px);
+  width: clamp(15px, 15vw, 150px);
+  font-size: clamp(1px, 5vw, 60px);
   border-radius: 5px;
   background-color: red;
 }

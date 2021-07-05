@@ -3,7 +3,7 @@ import MineSweeper from '../classes/MineSweeper';
 import './Grid.css';
 
 function Grid() {
-    let minesweeper = new MineSweeper(20, 200);
+    let minesweeper = new MineSweeper(4, 10);
     return (
         <table className="Grid">
             <tbody>
