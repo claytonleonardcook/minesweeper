@@ -10,8 +10,9 @@ function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
             x={x}
             y={y}
             style={{
-                animation: (!alive && data === 1) ? `shake ${Math.random() / 10 + 0.05}s none 0s 10` : 'none',
-                backgroundColor: toggled ? '#FFF0' : ''
+                animation: (!alive && data === 1) ? `shake 0.5s ease-in 0s forwards` : 'none',
+                backgroundColor: toggled ? '#FFF0' : '',
+                height: `${((window.innerHeight > window.innerWidth ? window.innerWidth : window.innerHeight) - 100) / grid.length}px`
             }}
             onClick={() => {
                 if (!toggled) {

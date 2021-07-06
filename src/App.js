@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [alive, setAlive] = useState(true);
-  const [grid, setGrid] = useState(createGrid(5, 10));
+  const [grid, setGrid] = useState(createGrid(8, (8 * 8) / 4));
   return (
     <div className="App">
       <table className="Grid">
@@ -28,7 +28,7 @@ function App() {
       <div style={{ visibility: alive ? 'hidden' : 'visible' }}>
         <h2>Game Over</h2>
         <button onClick={() => {
-          setGrid(createGrid(5, 10));
+          setGrid(createGrid(8, (8 * 8) / 4));
           setAlive(true);
         }}>New Game?</button>
       </div>

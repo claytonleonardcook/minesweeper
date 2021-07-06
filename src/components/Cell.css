@@ -1,8 +1,8 @@
 .Cell {
-  height: clamp(15px, 15vw, 150px);
-  width: clamp(15px, 15vw, 150px);
-  font-size: clamp(1px, 5vw, 60px);
-  border-radius: 15px;
+  position: relative;
+  aspect-ratio: 1/1;
+  font-size: 100%;
+  border-radius: 5%;
   background-color: #009edd;
 }
 
@@ -12,11 +12,10 @@
 }
 
 @keyframes shake {
-  0% {
-    content: "💣";
-    transform: rotate(-5deg);
+  from {
+    background-color: #009edd;
   }
-  50% {
-    transform: rotate(5deg);
+  to {
+    background-color: red;
   }
 }
