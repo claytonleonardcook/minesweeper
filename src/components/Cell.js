@@ -1,18 +1,29 @@
-import { useState } from 'react';
 import checkNeighbors from '../helper/checkNeighbors';
 import createGrid from '../helper/createGrid';
 import './Cell.css';
 
-function Cell({ x, y, grid, setGrid }) {
-    const [toggle, setToggle] = useState(true);
+function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
+    const { data, toggled } = grid[y][x];
     return (
-        <th className="Cell" x={x} y={y} onClick={({ target }) => {
-            if (toggle) {
-                if (grid[y][x] === '💣') window.location.reload();
-                target.innerHTML = checkNeighbors(grid, x, y);
-                setToggle(false);
-            }
-        }}></th >
+        <th
+            className="Cell"
+            x={x}
+            y={y}
+            style={{
+                animation: (!alive && data === 1) ? `shake ${Math.random() / 10 + 0.05}s none 0s 10` : 'none',
+                backgroundColor: toggled ? '#FFF0' : ''
+            }}
+            onClick={() => {
+                if (!toggled) {
+                    if (data) {
+                        setAlive(false);
+                    }
+                    const newGrid = [...grid];
+                    newGrid[y][x].toggled = true;
+                    setGrid(newGrid);
+
+                }
+            }}>{toggled ? (data ? '💣' : checkNeighbors(grid, x, y)) : ''}</th >
     )
 }
 

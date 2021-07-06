@@ -6,8 +6,7 @@ export default function checkNeighbors(grid = [], x = 0, y = 0) {
         for (let localX = -1; localX <= 1; localX++) {
             let newX = x + localX;
             if (newX < 0 || newX >= grid.length || (localX === 0 && localY === 0)) continue;
-            console.log(document.querySelector(`.Cell[x='${newX}'][y='${newY}']`));
-            numberOfMines += grid[newY][newX] === '💣' ? 1 : 0;
+            numberOfMines += grid[newY][newX].data ? 1 : 0;
         }
     }
     return numberOfMines;
