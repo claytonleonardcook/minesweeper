@@ -1,5 +1,5 @@
 import checkNeighbors from '../helper/checkNeighbors';
-import createGrid from '../helper/createGrid';
+import floodEmpty from '../helper/floodEmpty';
 import './Cell.css';
 
 function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
@@ -19,11 +19,11 @@ function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
                 if (!toggled) {
                     if (data) {
                         setAlive(false);
+                    } else {
+                        const newGrid = [...grid];
+                        newGrid[y][x].toggled = true;
+                        setGrid(floodEmpty(newGrid, x, y));
                     }
-                    const newGrid = [...grid];
-                    newGrid[y][x].toggled = true;
-                    setGrid(newGrid);
-
                 }
             }}>{toggled ? (data ? '💣' : checkNeighbors(grid, x, y)) : ''}</th >
     )

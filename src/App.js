@@ -4,8 +4,8 @@ import createGrid from './helper/createGrid';
 import { useState } from 'react';
 
 function App() {
-  const [alive, setAlive] = useState(true);
-  const [grid, setGrid] = useState(createGrid(8, (8 * 8) / 4));
+  const [alive, setAlive] = useState(true),
+    [grid, setGrid] = useState(createGrid(8, (8*8)/2));
   return (
     <div className="App">
       <table className="Grid">
