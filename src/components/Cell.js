@@ -2,7 +2,7 @@ import checkNeighbors from '../helper/checkNeighbors';
 import floodEmpty from '../helper/floodEmpty';
 import './Cell.css';
 
-function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
+function Cell({ x, y, states: { started: [started, setStarted], grid: [grid, setGrid], alive: [alive, setAlive] } }) {
     const { data, toggled } = grid[y][x];
     return (
         <th
@@ -17,12 +17,20 @@ function Cell({ x, y, grid: [grid, setGrid], alive: [alive, setAlive] }) {
             }}
             onClick={() => {
                 if (!toggled) {
-                    if (data) {
-                        setAlive(false);
-                    } else {
+                    if (!started) {
+                        setStarted(true);
                         const newGrid = [...grid];
+                        newGrid[y][x].data = 0;
                         newGrid[y][x].toggled = true;
                         setGrid(floodEmpty(newGrid, x, y));
+                    } else {
+                        if (data) {
+                            setAlive(false);
+                        } else {
+                            const newGrid = [...grid];
+                            newGrid[y][x].toggled = true;
+                            setGrid(floodEmpty(newGrid, x, y));
+                        }
                     }
                 }
             }}>{toggled ? (data ? '💣' : checkNeighbors(grid, x, y)) : ''}</th >

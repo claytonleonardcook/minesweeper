@@ -4,8 +4,9 @@ import createGrid from './helper/createGrid';
 import { useState } from 'react';
 
 function App() {
-  const [alive, setAlive] = useState(true),
-    [grid, setGrid] = useState(createGrid(8, (8*8)/2));
+  const [started, setStarted] = useState(false),
+    [alive, setAlive] = useState(true),
+    [grid, setGrid] = useState(createGrid(8, (8 * 8) / 4));
   return (
     <div className="App">
       <table className="Grid">
@@ -16,7 +17,7 @@ function App() {
                 <tr key={y} className={`row y`}>
                   {
                     row.map((cell, x) => {
-                      return (<Cell key={x} x={x} y={y} grid={[grid, setGrid]} alive={[alive, setAlive]} />)
+                      return (<Cell key={x} x={x} y={y} states={{ started: [started, setStarted], alive: [alive, setAlive], grid: [grid, setGrid] }} />)
                     })
                   }
                 </tr>
