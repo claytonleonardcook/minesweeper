@@ -31,6 +31,7 @@ function App() {
         <button onClick={() => {
           setGrid(createGrid(8, (8 * 8) / 4));
           setAlive(true);
+          setStarted(false);
         }}>New Game?</button>
       </div>
     </div>
